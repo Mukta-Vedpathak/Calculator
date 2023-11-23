@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+    <meta charset="utf-8">
+    <title>Mukta's Calculator</title>
+<head>
+    <style>
+        .container{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        .box{
+            background-color: green;
+            text-align:center;
+            font-size:4rem;
+            font-weight:bold;
+            height:200px;
+            width:300px;
+            border-radius:5%;
+            color:white;
+        }
+
+        button{
+            background-color:green;
+            border:none;
+            color:white;
+            font-size:4rem;
+            font-weight:bold;
+        }
+
+        #num{
+            width:900px;
+            height:200px;
+            border: 4px solid black;
+            border-radius:5px;
+        }
+
+        input{
+            font-size:5rem;
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <table border="none">
+            <tr>
+                <th colspan="3"><input type="text" id="num"></th>
+                <th class="box"><button class="clear">C</button></th>
+            </tr>
+            <tr>
+                <td class="box"><button class="digit">1</button></td>
+                <td class="box"><button class="digit">2</button></td>
+                <td class="box"><button class="digit">3</button></td>
+                <td class="box divide"><button class="divi op">/</button></td>
+            </tr>
+            <tr>
+                <td class="box"><button class="digit">4</button></td>
+                <td class="box"><button class="digit">5</button></td>
+                <td class="box"><button class="digit">6</button></td>
+                <td class="box multiply"><button class="multi op">*</button></td>
+            </tr>
+            <tr>
+                <td class="box"><button class="digit">7</button></td>
+                <td class="box"><button class="digit">8</button></td>
+                <td class="box"><button class="digit">9</button></td>
+                <td class="box subtract"><button class="subs op">-</button></td>
+            </tr>
+            <tr>
+                <td class="box"><button class="digit">0</button></td>
+                <td class="box"><button class="decimal op">.</button></td>
+                <td class="box result"><button class="res">=</button></td>
+                <td class="box add"><button class="addi op">+</button></td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            var digits=document.querySelectorAll(".digit").length;
+
+            for(var i=0; i<digits; i++){
+                document.querySelectorAll(".digit")[i].addEventListener("click", function(){
+                switch (this.innerHTML) {
+                    case "1":
+                        document.querySelector("#num").value +="1";
+                        break;
+                    case "2":
+                        document.querySelector("#num").value +="2";
+                        break;
+                    case "3":
+                        document.querySelector("#num").value +="3";
+                        break;
+                    case "4":
+                        document.querySelector("#num").value +="4";
+                        break;
+                    case "5":
+                        document.querySelector("#num").value +="5";
+                        break;        
+                    case "6":
+                        document.querySelector("#num").value +="6";
+                        break; 
+                    case "7":
+                        document.querySelector("#num").value +="7";
+                        break;
+                    case "8":
+                        document.querySelector("#num").value +="8";
+                        break;
+                    case "9":
+                        document.querySelector("#num").value +="9";
+                        break; 
+                    case "0":
+                        document.querySelector("#num").value +="0";
+                        break;  
+                    default:
+                        console.log("invalid");
+                        break;
+                }
+            });
+        }
+
+        for(var a=0; a<5; a++){
+            document.querySelectorAll(".op")[a].addEventListener("click", function(){
+                switch(this.innerHTML){
+                    case "+":
+                        document.querySelector("#num").value +="+";
+                        break;
+                    case "-":
+                        document.querySelector("#num").value +="-";
+                        break; 
+                    case "*":
+                        document.querySelector("#num").value +="*";
+                        break; 
+                    case "/":
+                        document.querySelector("#num").value +="/";
+                        break;
+                    case ".":
+                        document.querySelector("#num").value +=".";
+                        break;
+                    default:
+                        console.log("invalid");
+                        break;
+                }
+            });
+        }
+           
+        document.querySelector(".result").onclick = input_numbers;
+        document.querySelector(".clear").onclick = clean;
+        
+        function clean(){
+            document.querySelector("#num").value ="";
+        }
+        
+        function input_numbers() {
+            const myArray = document.querySelector("#num").value.split("");
+            var a = Number(myArray[0]);
+            var operator = myArray[1];
+            var b = Number(myArray[2]);
+
+        if(operator=="+"){
+            document.querySelector("#num").value ="";
+            var sum = a+b;
+            document.querySelector("#num").value +=sum;
+        }
+
+        if(operator=="-"){
+            document.querySelector("#num").value ="";
+            var difference = a-b;
+            document.querySelector("#num").value +=difference;
+        }
+
+        if(operator=="*"){
+            document.querySelector("#num").value ="";
+            var product = a*b;
+            document.querySelector("#num").value +=product;
+        }
+        
+        if(operator=="/"){
+            document.querySelector("#num").value ="";
+            var divide = a/b;
+            document.querySelector("#num").value +=divide;
+        }
+    }
+    </script>          
+</body>
